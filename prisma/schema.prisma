@@ -17,6 +17,7 @@ model Utilisateur {
   password String
   role     role
   articles Article[]
+  commentaires Commentaire[]
 }
 
 enum role {
@@ -46,8 +47,9 @@ model Categorie {
 
 model Commentaire {
   id        Int      @id @default(autoincrement())
-  email     String
   contenu   String
+  email     String
+  utilisateur   Utilisateur @relation(fields: [email], references: [email])
   Article   Article @relation(fields: [articleId], references: [id])
   articleId Int
 }

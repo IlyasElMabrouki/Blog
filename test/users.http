@@ -1,0 +1,35 @@
+GET http://localhost:3000/users/?take=2&skip=1
+
+###
+GET http://localhost:3000/users/1
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "nom": "Leo Messi",
+  "email" : "messi@gmail.com",
+  "password": "1010",
+  "role": "AUTHOR",
+  "articles":[],
+  "commentaires": []
+}
+
+
+###
+PATCH http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "id": 2,
+  "nom": "Leo Messi",
+  "email" : "messi@gmail.com",
+  "password": "1010",
+  "role": "ADMIN",
+  "articles":[],
+  "commentaires": []
+}
+
+###
+DELETE http://localhost:3000/users/2

@@ -19,12 +19,12 @@ router.get('/',async (req,res)=>{
 
 router.get('/:id', async (req, res) => {
     try {
-        const article = await prisma.Categorie.findMany({
+        const categorie = await prisma.Categorie.findMany({
             where: {
               id: parseInt(req.params.id)
             },
         });
-        res.send(article);
+        res.send(categorie);
     }
     catch (error){
         res.status(500).send('ID du categorie introuvable!!' + req.params.id);
