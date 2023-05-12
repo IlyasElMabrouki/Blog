@@ -6,11 +6,11 @@ const prisma = new PrismaClient();
 
 router.get('/',async (req,res)=>{
     try{
-        const commentaires = await prisma.Categorie.findMany({
+        const comments = await prisma.Commentaire.findMany({
             take: parseInt(req.query.take),
             skip: parseInt(req.query.skip)
         });
-        res.send(commentaires);
+        res.send(comments);
     }
     catch(error){
         res.status(500).send('ERROR');
@@ -19,23 +19,38 @@ router.get('/',async (req,res)=>{
 
 router.get('/:id', async (req, res) => {
     try {
-        const article = await prisma.Categorie.findMany({
+        const comment = await prisma.Commentaire.findUnique({
             where: {
               id: parseInt(req.params.id)
             },
         });
-        res.send(article);
+        res.send(comment);
     }
     catch (error){
-        res.status(500).send('ID du categorie introuvable!!' + req.params.id);
+        res.status(500).send('ID du article introuvable!!' + req.params.id);
     }
 });
 
 router.post('/', async (req,res)=>{
+    const {contenu,email, articleId } = req.body;
     try {
-        await prisma.Categorie.create({
+        await prisma.Commentaire.create({
             data: {
-                nom: req.body.nom
+                contenu,
+                utilisateur: {
+                    connect: {
+                        email: email,
+                    },
+                },
+                Article: {
+                    connect: {
+                        id: articleId,
+                    },
+                }
+            },
+            include: {
+                utilisateur: true,
+                Article: true
             },
         });
         res.send('Creation Success !!!')
@@ -46,14 +61,29 @@ router.post('/', async (req,res)=>{
 })
 
 router.patch('/',async (req,res)=>{
+    const {id, contenu,email, articleId } = req.body;
     try {
-        await prisma.Categorie.update({
+        await prisma.Commentaire.update({
             where: {
-                id: parseInt(req.body.id),
-              },
-              data: {
-                nom: req.body.nom,
-              },
+                id: parseInt(id),
+            },
+            data: {
+                contenu,
+                utilisateur: {
+                    connect: {
+                        email: email,
+                    },
+                },
+                Article: {
+                    connect: {
+                        id: articleId,
+                    },
+                }
+            },
+            include: {
+                utilisateur: true,
+                Article: true
+            },
         });
         res.send('Modification Success !!!')
     }
@@ -64,7 +94,7 @@ router.patch('/',async (req,res)=>{
 
 router.delete('/:id', async (req, res) => {
     try {
-        await prisma.Categorie.delete({
+        await prisma.Commentaire.delete({
             where: {
               id: parseInt(req.params.id)
             },
@@ -72,7 +102,7 @@ router.delete('/:id', async (req, res) => {
         res.send('Delete is done !!');
     }
     catch (error){
-        res.status(500).send('Try Again');
+        res.status(500).send('ID du article introuvable!!' + req.params.id);
     }
 });
 

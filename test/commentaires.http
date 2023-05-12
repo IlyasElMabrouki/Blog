@@ -1,0 +1,28 @@
+GET http://localhost:3000/commentaires/?take=3&skip=0
+
+###
+GET http://localhost:3000/commentaires/2
+
+###
+POST http://localhost:3000/commentaires
+Content-Type: application/json
+
+{ 
+    "contenu": "Very Nice 2",
+    "email": "ilyas@gmail.com",
+    "articleId": 4
+}
+
+###
+PATCH http://localhost:3000/commentaires
+Content-Type: application/json
+
+{
+    "id":4,
+    "contenu": "Nadi",
+    "email": "ilyas@gmail.com",
+    "articleId": 2
+}
+
+###
+DELETE http://localhost:3000/commentaires/3
