@@ -4,6 +4,20 @@ var router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+router.get('/',async (req,res)=>{
+    try{
+        const articles = await prisma.Article.findMany({
+            take: parseInt(req.query.take),
+            skip: parseInt(req.query.skip)
+        });
+        res.send(articles);
+    }
+    catch(error){
+        res.status(500).send('ERROR');
+    }
+})
+
+
 router.get('/:id', async (req, res) => {
     try {
         const article = await prisma.Article.findMany({
@@ -18,6 +32,58 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/', async (req,res)=>{
+    const { titre, contenu, image, utilisateurId } = req.body;
+    try {
+        await prisma.Article.create({
+            data: {
+                titre,
+                contenu,
+                image,
+                user: {
+                    connect: {
+                        id: utilisateurId,
+                    },
+                },
+            },
+            include: {
+                user: true,
+            },
+        });
+        res.send('Creation Success !!!')
+    }
+    catch(error){
+        res.status(500).send('Try Again');
+    }
+})
+
+router.patch('/',async (req,res)=>{
+    const {id,titre, contenu, image, utilisateurId} = req.body;
+    try {
+        await prisma.Article.update({
+            where: {
+                id: parseInt(id),
+            },
+            data: {
+                titre,
+                contenu,
+                image,
+                user: {
+                    connect: {
+                        id: utilisateurId,
+                    },
+                },
+            },
+            include: {
+                user: true,
+            },
+        });
+        res.send('Modification Success !!!')
+    }
+    catch(error){
+        res.status(500).send('Try Again');
+    }
+})
 
 router.delete('/:id', async (req, res) => {
     try {

@@ -50,10 +50,10 @@ router.patch('/',async (req,res)=>{
         await prisma.Categorie.update({
             where: {
                 id: parseInt(req.body.id),
-              },
-              data: {
+            },
+            data: {
                 nom: req.body.nom,
-              },
+            },
         });
         res.send('Modification Success !!!')
     }

@@ -1,1 +1,30 @@
-DELETE http://localhost:3000/articles/1
+GET http://localhost:3000/articles/?take=1&skip=2
+
+###
+GET http://localhost:3000/articles/2
+
+###
+POST http://localhost:3000/articles
+Content-Type: application/json
+
+{ 
+    "titre": "My First Article",
+    "contenu": "This is the content of my first article.",
+    "image": "https://example.com/image.jpg",
+    "utilisateurId": 1
+}
+
+###
+PATCH http://localhost:3000/articles
+Content-Type: application/json
+
+{
+  "id":5,
+  "titre": "My Second Article",
+  "contenu": "This is the content of my first article.",
+  "image": "https://example.com/image.jpg",
+  "utilisateurId": 1
+}
+
+###
+DELETE http://localhost:3000/articles/5
