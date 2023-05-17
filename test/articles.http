@@ -11,7 +11,8 @@ Content-Type: application/json
     "titre": "My First Article",
     "contenu": "This is the content of my first article.",
     "image": "https://example.com/image.jpg",
-    "utilisateurId": 1
+    "utilisateurId": 22,
+    "categoryId" : 19
 }
 
 ###

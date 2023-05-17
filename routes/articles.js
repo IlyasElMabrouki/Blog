@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req,res)=>{
-    const { titre, contenu, image, utilisateurId } = req.body;
+    const { titre, contenu, image, utilisateurId, categoryId} = req.body;
     try {
         await prisma.Article.create({
             data: {

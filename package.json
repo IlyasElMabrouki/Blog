@@ -6,7 +6,6 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
-    "@prisma/client": "^4.14.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -16,6 +15,9 @@
     "nodemon": "^2.0.22"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.0",
+    "@prisma/client": "^4.14.0",
+    "faker": "^6.6.6",
     "prisma": "^4.14.0"
   }
 }
