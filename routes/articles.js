@@ -4,7 +4,9 @@ var router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-router.get('/',async (req,res)=>{
+const auth = require('../auth');
+
+router.get('/',auth, async (req,res)=>{
     try{
         const articles = await prisma.Article.findMany({
             take: parseInt(req.query.take),
@@ -17,8 +19,7 @@ router.get('/',async (req,res)=>{
     }
 })
 
-
-router.get('/:id', async (req, res) => {
+router.get('/:id',auth, async (req, res) => {
     try {
         const article = await prisma.Article.findMany({
             where: {
@@ -32,7 +33,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req,res)=>{
+router.post('/',auth, async (req,res)=>{
     const { titre, contenu, image, utilisateurId, categoryId} = req.body;
     try {
         await prisma.Article.create({
@@ -57,7 +58,7 @@ router.post('/', async (req,res)=>{
     }
 })
 
-router.patch('/',async (req,res)=>{
+router.patch('/',auth, async (req,res)=>{
     const {id,titre, contenu, image, utilisateurId} = req.body;
     try {
         await prisma.Article.update({
@@ -85,7 +86,7 @@ router.patch('/',async (req,res)=>{
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',auth, async (req, res) => {
     try {
         await prisma.Article.delete({
             where: {

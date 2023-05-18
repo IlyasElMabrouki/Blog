@@ -1,28 +1,33 @@
 GET http://localhost:3000/commentaires/?take=3&skip=0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 GET http://localhost:3000/commentaires/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 POST http://localhost:3000/commentaires
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 { 
     "contenu": "Very Nice 2",
-    "email": "ilyas@gmail.com",
+    "email": "Isac.Wolf@gmail.com",
     "articleId": 4
 }
 
 ###
 PATCH http://localhost:3000/commentaires
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
-    "id":4,
+    "id":926,
     "contenu": "Nadi",
-    "email": "ilyas@gmail.com",
+    "email": "Isac.Wolf@gmail.com",
     "articleId": 2
 }
 
 ###
-DELETE http://localhost:3000/commentaires/3
+DELETE http://localhost:3000/commentaires/926
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE

@@ -1,2 +1,5 @@
 /node_modules
 /test.js
+/public/index.html
+/public/javascripts/browser-app.js
+/public/stylesheets/styles.css

@@ -1,11 +1,14 @@
-GET http://localhost:3000/users/?take=2&skip=1
+GET http://localhost:3000/users/?take=5&skip=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
-GET http://localhost:3000/users/1
+GET http://localhost:3000/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 POST http://localhost:3000/users
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
   "nom": "Leo Messi",
@@ -16,13 +19,13 @@ Content-Type: application/json
   "commentaires": []
 }
 
-
 ###
 PATCH http://localhost:3000/users
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
-  "id": 2,
+  "id": 12,
   "nom": "Leo Messi",
   "email" : "messi@gmail.com",
   "password": "1010",
@@ -32,4 +35,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/users/2
+DELETE http://localhost:3000/users/12
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE

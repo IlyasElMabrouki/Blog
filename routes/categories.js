@@ -4,7 +4,9 @@ var router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-router.get('/',async (req,res)=>{
+const auth = require('../auth');
+
+router.get('/',auth, async (req,res)=>{
     try{
         const categorie = await prisma.Categorie.findMany({
             take: parseInt(req.query.take),
@@ -17,7 +19,7 @@ router.get('/',async (req,res)=>{
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     try {
         const categorie = await prisma.Categorie.findMany({
             where: {
@@ -31,7 +33,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req,res)=>{
+router.post('/', auth, async (req,res)=>{
     try {
         await prisma.Categorie.create({
             data: {
@@ -45,7 +47,7 @@ router.post('/', async (req,res)=>{
     }
 })
 
-router.patch('/',async (req,res)=>{
+router.patch('/', auth, async (req,res)=>{
     try {
         await prisma.Categorie.update({
             where: {
@@ -62,7 +64,7 @@ router.patch('/',async (req,res)=>{
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         await prisma.Categorie.delete({
             where: {

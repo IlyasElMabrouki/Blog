@@ -1,11 +1,14 @@
 GET http://localhost:3000/categories/?take=2&skip=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 GET http://localhost:3000/categories/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 POST http://localhost:3000/categories
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
   "nom": "Books",
@@ -15,15 +18,17 @@ Content-Type: application/json
 ###
 PATCH http://localhost:3000/categories
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
-  "id":1,
-  "nom": "SmartPhones",
+  "id":11,
+  "nom": "Books",
   "articles":[]
 }
 
 ###
-DELETE http://localhost:3000/categories/9
+DELETE http://localhost:3000/categories/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 
 

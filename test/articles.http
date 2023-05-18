@@ -1,26 +1,30 @@
 GET http://localhost:3000/articles/?take=1&skip=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 GET http://localhost:3000/articles/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 ###
 POST http://localhost:3000/articles
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 { 
     "titre": "My First Article",
     "contenu": "This is the content of my first article.",
     "image": "https://example.com/image.jpg",
-    "utilisateurId": 22,
-    "categoryId" : 19
+    "utilisateurId": 3,
+    "categoryId" : 1
 }
 
 ###
 PATCH http://localhost:3000/articles
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
 
 {
-  "id":5,
+  "id":101,
   "titre": "My Second Article",
   "contenu": "This is the content of my first article.",
   "image": "https://example.com/image.jpg",
@@ -28,4 +32,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/articles/5
+DELETE http://localhost:3000/articles/101
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE
