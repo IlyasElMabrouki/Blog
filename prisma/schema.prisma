@@ -37,14 +37,12 @@ model Article {
   utilisateurId    Int
   categories       Categorie[]
   commentaires     Commentaire[]
-  ArticleCategorie ArticleCategorie[]
 }
 
 model Categorie {
   id               Int                @id @default(autoincrement())
   nom              String
   articles         Article[]
-  ArticleCategorie ArticleCategorie[]
 }
 
 model Commentaire {
@@ -56,10 +54,3 @@ model Commentaire {
   articleId   Int
 }
 
-model ArticleCategorie {
-  id          Int         @id @default(autoincrement())
-  Article     Article   @relation(fields: [articleId], references: [id])
-  articleId   Int
-  Categorie   Categorie @relation(fields: [categorieId], references: [id])
-  categorieId Int
-}

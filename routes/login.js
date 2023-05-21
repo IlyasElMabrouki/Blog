@@ -20,7 +20,7 @@ router.post('/',async (req,res)=>{
         res.status(200).json({msg:'user created',token})
     }
     catch(error){
-        res.status(500).json({msg:'Something was wrong'})
+        res.status(500).json({msg:'ERROR'})
     }
 })
 

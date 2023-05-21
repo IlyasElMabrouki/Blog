@@ -14,8 +14,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
     "titre": "My First Article",
     "contenu": "This is the content of my first article.",
     "image": "https://example.com/image.jpg",
-    "utilisateurId": 3,
-    "categoryId" : 1
+    "utilisateurId": 25,
+    "categories": [{"id": 21},{"id": 22},{"id": 23}]
 }
 
 ###

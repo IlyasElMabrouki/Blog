@@ -10,7 +10,12 @@ router.get('/',auth, async (req,res)=>{
     try{
         const categorie = await prisma.Categorie.findMany({
             take: parseInt(req.query.take),
-            skip: parseInt(req.query.skip)
+            skip: parseInt(req.query.skip),
+            include : {
+                _count: {
+                  select: { articles: true },
+                },
+            }
         });
         res.send(categorie);
     }
@@ -71,7 +76,7 @@ router.delete('/:id', auth, async (req, res) => {
               id: parseInt(req.params.id)
             },
         });
-        res.send('Delete is done !!');
+        res.json({msg:'Delete is Done!!'});
     }
     catch (error){
         res.status(500).send('Try Again');

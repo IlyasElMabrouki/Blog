@@ -10,7 +10,14 @@ router.get('/',auth, async (req,res)=>{
     try{
         const articles = await prisma.Article.findMany({
             take: parseInt(req.query.take),
-            skip: parseInt(req.query.skip)
+            skip: parseInt(req.query.skip),
+            include : {
+                user: true,
+                categories : true
+            }
+        });
+        articles.forEach((article) => {
+            article.updatedAt = article.updatedAt.toLocaleDateString();
         });
         res.send(articles);
     }
@@ -34,8 +41,23 @@ router.get('/:id',auth, async (req, res) => {
 });
 
 router.post('/',auth, async (req,res)=>{
-    const { titre, contenu, image, utilisateurId, categoryId} = req.body;
+    const { titre, contenu, image, utilisateurId,categories} = req.body;
+
+    const categoriesId = categories.map(category => category.id);
+    var userRole;
+
     try {
+        userRole = await prisma.utilisateur.findUnique({
+            where: {
+                id: parseInt(utilisateurId)
+            },
+            select : {
+                role : true,
+            }
+        });
+
+        if (userRole.role !== "AUTHOR") throw error;
+
         await prisma.Article.create({
             data: {
                 titre,
@@ -46,15 +68,24 @@ router.post('/',auth, async (req,res)=>{
                         id: utilisateurId,
                     },
                 },
+                categories: {
+                    connect: categoriesId.map(id => ({ id }))
+                }
             },
             include: {
                 user: true,
+                categories: true
             },
         });
         res.send('Creation Success !!!')
     }
     catch(error){
-        res.status(500).send('Try Again');
+        if (userRole.role !== "AUTHOR") {
+            res.status(500).send('Only Author ...');
+        }
+        else {
+            res.status(500).send('Try Again');
+        }
     }
 })
 
@@ -93,7 +124,7 @@ router.delete('/:id',auth, async (req, res) => {
               id: parseInt(req.params.id)
             },
         });
-        res.send('Delete is done !!');
+        res.json({msg:'Delete is Done!!'});
     }
     catch (error){
         res.status(500).send('ID du article introuvable!!' + req.params.id);

@@ -101,7 +101,7 @@ router.delete('/:id', auth, async (req, res) => {
               id: parseInt(req.params.id)
             },
         });
-        res.send('Delete is done !!');
+        res.json({msg:'Delete is Done!!'});
     }
     catch (error){
         res.status(500).send('ID du article introuvable!!' + req.params.id);

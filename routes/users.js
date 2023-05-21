@@ -34,7 +34,7 @@ router.get('/:id',auth, async (req, res) => {
   }
 });
 
-router.post('/', auth, async (req,res)=>{
+router.post('/', async (req,res)=>{
   try {
       await prisma.Utilisateur.create({
           data: {
@@ -44,7 +44,7 @@ router.post('/', auth, async (req,res)=>{
               role: req.body.role
           },
       });
-      res.send('Creation Success !!!')
+      res.send('Creation Success !!!');
   }
   catch(error){
       res.status(500).send('Try Again');
@@ -78,7 +78,7 @@ router.delete('/:id', auth, async (req, res) => {
             id: parseInt(req.params.id)
           },
       });
-      res.send('Delete is done !!');
+      res.json({msg:'Delete is Done!!'});
   }
   catch (error){
       res.status(500).send('Try Again');
