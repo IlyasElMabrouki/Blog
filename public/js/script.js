@@ -322,7 +322,7 @@ function getCategories(take = 10, skip = 0) {
 }
 
 
-/*function getCategorie(id) {
+function getCategorie(id) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/categories/' + id,
@@ -340,7 +340,7 @@ function getCategories(take = 10, skip = 0) {
       });
     });
 }
-
+/*
 getCategorie(1)
   .then(function(response) {
     console.log(response);
@@ -349,7 +349,6 @@ getCategorie(1)
     console.log(error);
   });
 */
-
 /*function postCategorie(categorie) {
     return new Promise(function(resolve, reject) {
       $.ajax({
@@ -419,15 +418,16 @@ patchCategorie(categorie)
   });
 */
 
-/*
+
 function deleteCategorie(id) {
+    const token = localStorage.getItem('token');
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/categories/' + id,
         method: 'DELETE',
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,       
         },
         success: function(response) {
           resolve(response);
@@ -438,7 +438,7 @@ function deleteCategorie(id) {
       });
     });
 }
-
+/*
 deleteCategorie(13)
   .then(function(response) {
     console.log(response);

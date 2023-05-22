@@ -26,7 +26,6 @@ router.get('/:id',auth, async (req, res) => {
             id: parseInt(req.params.id)
         },
       });
-      console.log(req.user.id);
       res.send(user);
   }
   catch (error){

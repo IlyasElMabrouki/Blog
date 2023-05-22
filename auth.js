@@ -13,7 +13,7 @@ const auth = async (req,res,next)=>{
         next();   
     }
     catch(error){
-        res.status(500).json({msg:'LOG IN FIRST'})
+        res.status(401).json({msg:'LOG IN FIRST'})
     }
 }
 

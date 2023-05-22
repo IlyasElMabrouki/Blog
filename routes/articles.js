@@ -13,7 +13,8 @@ router.get('/',auth, async (req,res)=>{
             skip: parseInt(req.query.skip),
             include : {
                 user: true,
-                categories : true
+                categories : true,
+                //commentaires: true
             }
         });
         articles.forEach((article) => {
