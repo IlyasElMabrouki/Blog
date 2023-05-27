@@ -11,13 +11,9 @@ const passwordInputDOM2 = document.querySelector('.password-input2')
 const wrapper = document.querySelector('.main-content')
 const main = document.querySelector('.site-wrapper')
 
-/*const formAlertDOM = document.querySelector('.form-alert')
-const resultDOM = document.querySelector('.result')
-const btnDOM = document.querySelector('#data')
-const tokenDOM = document.querySelector('.token')*/
-
 $(document).ready(function () {
-  if (!localStorage.getItem('token')){
+  const token = localStorage.getItem('token');
+  if (!token){
     $(main).hide();
     $(wrapper).hide();
     $('footer').hide();
@@ -86,15 +82,15 @@ $('#toForm2').click(function (e) {
       $(wrapper).show();
       $('footer').show();
       getCategories()
-  .then(function(response) {
-    const categorieList = $('.list');
-    response.forEach(function(categorie) {
-      categorieList.append($('<li>').append($('<a>').text(categorie.nom)).append($('<span>').text(categorie._count.articles)));
-    });
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+        .then(function(response) {
+          const categorieList = $('.list');
+          response.forEach(function(categorie) {
+            categorieList.append($('<li>').append($('<a>').text(categorie.nom)).append($('<span>').text(categorie._count.articles)));
+          });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
 
   getArticles()
   .then(function(response) {
@@ -132,34 +128,7 @@ $('#toForm2').click(function (e) {
     $(formDOM).show();
   });
 
-/*btnDOM.addEventListener('click', async () => {
-  const token = localStorage.getItem('token')
-  try {
-    const { data } = await axios.get('/users', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    resultDOM.innerHTML = `<p>${user.nom}</p>`
-
-  } catch (error) {
-    localStorage.removeItem('token')
-    resultDOM.innerHTML = `<p>${error.response.data.msg}</p>`
-  }
-})*/
-
-/*const checkToken = () => {
-  tokenDOM.classList.remove('text-success')
-
-  const token = localStorage.getItem('token')
-  if (token) {
-    tokenDOM.textContent = 'token present'
-    tokenDOM.classList.add('text-success')
-  }
-}
-checkToken()*/
-
-/*function getUsers(take = 10, skip = 0) {
+function getUsers(take = 10, skip = 0) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/users/',
@@ -171,7 +140,7 @@ checkToken()*/
         },
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -183,15 +152,6 @@ checkToken()*/
     });
 }
 
-getUsers()
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-/*
 function getUser(id) {
     return new Promise(function(resolve, reject) {
       $.ajax({
@@ -199,7 +159,7 @@ function getUser(id) {
         method: 'GET',
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -210,7 +170,6 @@ function getUser(id) {
       });
     });
 }
-*/
 
 function postUser(user) {
     return new Promise(function(resolve, reject) {
@@ -229,7 +188,7 @@ function postUser(user) {
     });
 }
 
-/*function patchUser(user) {
+function patchUser(user) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/users/',
@@ -237,7 +196,7 @@ function postUser(user) {
         data: JSON.stringify(user),
         contentType: 'application/json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -249,33 +208,14 @@ function postUser(user) {
     });
 }
 
-var user = {
-    id: 13,
-    nom: "Leo Messi",
-    email : "messi@gmail.com",
-    password: "1010",
-    role: "AUTHOR",
-    articles:[],
-    commentaires: []
-};
-
-patchUser(user)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-
-/*function deleteUser(id) {
+function deleteUser(id) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/users/' + id,
         method: 'DELETE',
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -286,15 +226,6 @@ patchUser(user)
       });
     });
 }
-
-deleteUser(13)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
 
 function getCategories(take = 10, skip = 0) {
     const token = localStorage.getItem('token');
@@ -321,7 +252,6 @@ function getCategories(take = 10, skip = 0) {
     });
 }
 
-
 function getCategorie(id) {
     return new Promise(function(resolve, reject) {
       $.ajax({
@@ -329,7 +259,7 @@ function getCategorie(id) {
         method: 'GET',
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -340,16 +270,8 @@ function getCategorie(id) {
       });
     });
 }
-/*
-getCategorie(1)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-/*function postCategorie(categorie) {
+
+function postCategorie(categorie) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/categories/',
@@ -357,7 +279,7 @@ getCategorie(1)
         data: JSON.stringify(categorie),
         contentType: 'application/json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -369,21 +291,7 @@ getCategorie(1)
     });
 }
 
-var categorie = {
-  nom: "Books",
-  articles:[]
-}
-
-postCategorie(categorie)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-
-/*function patchCategorie(categorie) {
+function patchCategorie(categorie) {
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/categories/',
@@ -391,7 +299,7 @@ postCategorie(categorie)
         data: JSON.stringify(categorie),
         contentType: 'application/json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -403,24 +311,7 @@ postCategorie(categorie)
     });
 }
 
-var categorie = {
-    id: 12,
-    nom: "Book",
-    articles:[]
-}
-
-patchCategorie(categorie)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-
-
 function deleteCategorie(id) {
-    const token = localStorage.getItem('token');
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: '/categories/' + id,
@@ -438,15 +329,6 @@ function deleteCategorie(id) {
       });
     });
 }
-/*
-deleteCategorie(13)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
 
 function getArticles(take = 10, skip = 0) {
     const token = localStorage.getItem('token');
@@ -473,7 +355,7 @@ function getArticles(take = 10, skip = 0) {
     });
 }
 
-/*
+
 function getArticle(id) {
     return new Promise(function(resolve, reject) {
       $.ajax({
@@ -481,7 +363,7 @@ function getArticle(id) {
         method: 'GET',
         dataType : 'json',
         headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
+          Authorization: `Bearer ${token}`,        
         },
         success: function(response) {
           resolve(response);
@@ -493,51 +375,165 @@ function getArticle(id) {
     });
 }
 
-getArticle(1)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-*/
-
-/*
 function postArticle(article) {
-    return new Promise(function(resolve, reject) {
-      $.ajax({
-        url: '/articles/',
-        method: 'POST',
-        data: JSON.stringify(article),
-        contentType: 'application/json',
-        headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJDaHJpc3RvcC5GcmFuZWNraUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0MjYxOTMsImV4cCI6MTY4NzAxODE5M30.7RoHNRrGGdT-Urbt7sJIbTamhSGcr0t9K8Rq9OggjpE'
-        },
-        success: function(response) {
-          resolve(response);
-        },
-        error: function(xhr, status, error) {
-          reject(xhr.responseText);
-        }
-      });
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/articles/',
+      method: 'POST',
+      data: JSON.stringify(article),
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`,        
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
     });
+  });
 }
 
-var article = {
-    titre: "My First Article",
-    contenu: "This is the content of my first article.",
-    image: "https://example.com/image.jpg",
-    utilisateurId: 5,
-};
-
-postArticle(article)
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
+function patchArticle(article) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/articles/',
+      method: 'PATCH',
+      data: JSON.stringify(article),
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`,        
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
   });
-*/
+}
+
+function deleteArticle(id) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/articles/' + id,
+      method: 'DELETE',
+      dataType : 'json',
+      headers: {
+        Authorization: `Bearer ${token}`,       
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
+function getCommentaires(take = 10, skip = 0) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/commentaires/',
+      method: 'GET',
+      //query string
+      data: {
+        take: take,
+        skip: skip
+      },
+      dataType : 'json',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
+
+function getCommenataire(id) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/commentaires/' + id,
+      method: 'GET',
+      dataType : 'json',
+      headers: {
+        Authorization: `Bearer ${token}`,        
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
+
+function postCommentaire(commentaire) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/commentaires/',
+      method: 'POST',
+      data: JSON.stringify(commentaire),
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`,        
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
+
+function patchCategorie(commentaire) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/commentaires/',
+      method: 'PATCH',
+      data: JSON.stringify(commentaire),
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`,        
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
+
+function deleteCommentaire(id) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/commentaires/' + id,
+      method: 'DELETE',
+      dataType : 'json',
+      headers: {
+        Authorization: `Bearer ${token}`,       
+      },
+      success: function(response) {
+        resolve(response);
+      },
+      error: function(xhr, status, error) {
+        reject(xhr + ' ' + status + ' ' + error);
+      }
+    });
+  });
+}
 
 function login(user) {
   return new Promise(function(resolve, reject) {

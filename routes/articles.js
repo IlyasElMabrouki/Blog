@@ -14,7 +14,6 @@ router.get('/',auth, async (req,res)=>{
             include : {
                 user: true,
                 categories : true,
-                //commentaires: true
             }
         });
         articles.forEach((article) => {
